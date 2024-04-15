@@ -1,9 +1,6 @@
 package com.foodexpress.authservice.domain.model
 
 import com.foodexpress.authservice.domain.enums.UserRole
-import jakarta.persistence.AttributeOverride
-import jakarta.persistence.Column
-import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -28,15 +25,10 @@ data class User(
     val username: String,
     @get:JvmName("password2")
     var password: String,
-    @Embedded
-    @AttributeOverride(name="street", column = Column(name = "BILLING_STREET"))
-    @AttributeOverride(name = "zipcode",column = Column(name = "BILLING_ZIPCODE", length = 5))
-    @AttributeOverride(name = "city", column = Column(name = "BILLING_CITY"))
-    val billingAdress: Adress,
     @CreatedDate
-    val createdDate: Instant? = null,
+    val createdDate: Instant? = Instant.now(),
     @LastModifiedDate
-    val updatedAt: Instant? = null,
+    val updatedAt: Instant? = Instant.now(),
     val role: UserRole = UserRole.USER
 ):UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {

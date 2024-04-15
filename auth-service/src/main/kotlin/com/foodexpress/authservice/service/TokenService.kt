@@ -1,13 +1,13 @@
 package com.foodexpress.authservice.service
 
 import com.foodexpress.authservice.domain.model.Token
+import com.foodexpress.authservice.domain.model.User
 import com.foodexpress.authservice.repository.TokenRepository
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.security.Key
@@ -20,10 +20,11 @@ class TokenService(private val tokenRepository: TokenRepository){
         return extractClaim(token,Claims::getSubject)
     }
 
-    fun generateToken(user:UserDetails):String{
+    fun generateToken(user:User):String{
         val claims= mapOf(
             "roles" to user.authorities.joinToString { it.authority },
-            "userId" to (user as User).username
+            "userId" to user.id,
+            "username" to user.username
         )
         return buildToken(claims,user)
     }
