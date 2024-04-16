@@ -30,6 +30,7 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	implementation("org.postgresql:postgresql")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
 
 
@@ -51,4 +52,13 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+extra["springCloudVersion"] = "2023.0.1"
+
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+	}
 }
