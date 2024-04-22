@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  restaurant-service:
+    image: postgres
+    restart: always
+    container_name: "restaurant-express"
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: secret
+      POSTGRES_DB: restaurant-express

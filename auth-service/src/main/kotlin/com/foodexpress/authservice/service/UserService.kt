@@ -50,17 +50,17 @@ class UserService(private val userRepository: UserRepository,
                 request.password
             )
         )
-        val cachedToken=getTokenFromCache(request.username)
+       /* val cachedToken=getTokenFromCache(request.username)
         if(cachedToken!=null){
-            System.out.println("Token retrieved from cache")
             return TokenResponse(cachedToken,request.username,tokenService.extractExpiration(cachedToken))
         }
+        */
         val user=userRepository.findByUsername(request.username)
         val jwt=tokenService.generateToken(user)
         val expirationDate=tokenService.extractExpiration(jwt)
         revokeAllUserTokens(user)
         tokenRepository.save(Token("",jwt,false,false,user))
-        cacheToken(request.username,jwt)
+        //cacheToken(request.username,jwt)
         println(getTokenFromCache(request.username));
         return TokenResponse(jwt,request.username,expirationDate)
     }
@@ -72,6 +72,10 @@ class UserService(private val userRepository: UserRepository,
         require(request.newPassword.equals(request.oldPassword)){ throw IllegalArgumentException("New password and confirm password does not match") }
         user.password=passwordEncoder.encode(request.newPassword)
         userRepository.save(user)
+    }
+
+    fun getUserByUsername(username:String):User{
+        return userRepository.findByUsername(username)
     }
 
     fun cacheToken(username:String,token:String){

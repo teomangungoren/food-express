@@ -9,8 +9,8 @@ class TokenStoreService(private val tokenRepository: TokenRepository,
                         private val redisTemplate: RedisTemplate<String, String>) {
 
     fun isTokenPresent(token: String): Boolean {
-        val cachedToken = redisTemplate.opsForValue().get("token: $token")
-        return cachedToken != null
+        val presentToken=tokenRepository.findByToken(token);
+        return presentToken!=null && !presentToken.expired && !presentToken.revoked;
     }
 
 }

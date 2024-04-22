@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("api/v1/product")
+@RestController
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
@@ -23,8 +24,9 @@ public class ProductController {
                 .body(productService.saveProduct(request));
     }
 
-    @GetMapping("/products")
+    @GetMapping()
     public ResponseEntity<List<ProductResponse>> listBook() {
+        System.out.println("ss");
         return ResponseEntity.ok(productService.getProducts());
     }
 

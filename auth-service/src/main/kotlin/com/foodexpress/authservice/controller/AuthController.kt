@@ -1,8 +1,8 @@
 package com.foodexpress.authservice.controller
 
-import com.foodexpress.authservice.service.TokenService
 import com.foodexpress.authservice.service.TokenStoreService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -11,5 +11,8 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(private val tokenStoreService: TokenStoreService) {
 
     @GetMapping("/validate")
-    fun validate(token: String): Boolean = tokenStoreService.isTokenPresent(token)
+    fun validate(@RequestHeader("Authorization") token: String): Boolean = tokenStoreService.isTokenPresent(token)
+
+
+
 }
