@@ -2,7 +2,9 @@ package com.foodexpress.restaurantservice.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "categories")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -20,4 +24,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Product> products;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

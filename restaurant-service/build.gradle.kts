@@ -33,6 +33,11 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+	//debezium
+	implementation("io.debezium:debezium-api:2.3.4.Final")
+	implementation("io.debezium:debezium-embedded:2.3.4.Final")
+	implementation("io.debezium:debezium-connector-postgres:2.3.4.Final")
+
 	//mapstruct
 	implementation("org.mapstruct:mapstruct:1.4.2.Final")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.4.2.Final")

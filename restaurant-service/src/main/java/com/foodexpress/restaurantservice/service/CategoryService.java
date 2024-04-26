@@ -7,10 +7,11 @@ import com.foodexpress.restaurantservice.domain.response.ProductResponse;
 import com.foodexpress.restaurantservice.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@NoArgsConstructor(force = true)
+@RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
@@ -18,6 +19,12 @@ public class CategoryService {
     public Category loadCategory(Long id) {
         return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
     }
+
+    public Category saveCategory(String name) {
+        return categoryRepository.save(new Category(name));
+    }
+
+
 
 
 }

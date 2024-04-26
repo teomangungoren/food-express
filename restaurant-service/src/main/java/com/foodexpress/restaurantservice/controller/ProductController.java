@@ -18,20 +18,20 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/save")
-    public ResponseEntity<ProductResponse> saveBook(@Validated @RequestBody ProductRequest request) {
+    public ResponseEntity<ProductResponse> saveProduct(@Validated @RequestBody ProductRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(productService.saveProduct(request));
     }
 
     @GetMapping()
-    public ResponseEntity<List<ProductResponse>> listBook() {
+    public ResponseEntity<List<ProductResponse>> listProducts() {
         System.out.println("ss");
         return ResponseEntity.ok(productService.getProducts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getBook(@PathVariable String id) {
+    public ResponseEntity<ProductResponse> getProduct(@PathVariable String id) {
         return ResponseEntity.ok(productService.getProduct(id));
     }
 

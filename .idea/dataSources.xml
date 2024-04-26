@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:postgresql://localhost:5433/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="jdbc:postgresql://localhost:5432/restaurant-express" uuid="12df1334-15b7-4b23-9db2-421b2ea36a88">
+    <data-source source="LOCAL" name="jdbc:postgresql://localhost:5432/restaurant-express" uuid="02b146d0-fe8a-4435-b0bd-be2530616891">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5434/restaurant-express</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
